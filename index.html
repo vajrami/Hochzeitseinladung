@@ -77,9 +77,10 @@
     transition: opacity .5s ease;
   }
   .lang-float.visible{ opacity: 1; pointer-events: auto; }
-  .lang-float .lang-pill{ padding: 6px 10px; gap: 8px; margin-bottom: 0; }
-  .lang-float .sep{ height: 18px; }
-  .lang-float .badge{ width: 30px !important; height: 30px !important; font-size: 19px !important; }
+  .lang-float .lang-pill{ padding: 4px 7px; gap: 6px; margin-bottom: 0; background: rgba(251,247,239,.85); box-shadow: 0 4px 14px -8px rgba(120,95,55,.4); }
+  .lang-float .sep{ height: 14px; }
+  .lang-float .badge{ width: 21px !important; height: 21px !important; font-size: 13px !important; opacity:.8; transition: opacity .25s ease, transform .25s ease; }
+  .lang-float .badge:hover, .lang-float .badge:focus-visible{ opacity:1; transform: scale(1.08); }
 
   /* ---------- dekorative Eckornamente ---------- */
   .corners{ position:absolute; inset: 14px; pointer-events:none; }
@@ -205,6 +206,8 @@
   .card + .card{ border-top: 1px solid rgba(120,95,55,.18); }
 
   .card-icon{ width: 52px; height:52px; margin: 0 auto 14px; color: var(--gold); }
+  .card-icon.gold-icon{ width: 56px; height:56px; }
+  .card-icon.gold-icon svg{ stroke:none; fill:initial; }
   .card-icon svg{ width:100%; height:100%; stroke: var(--gold); fill:none; stroke-width: 1.3; }
 
   .card-divider{ display:flex; align-items:center; gap: 12px; margin: 0 auto 12px; max-width: 300px; }
@@ -219,7 +222,7 @@
   }
   .names-row .amp{ color: var(--gold); font-style:italic; font-size: .8em; line-height:1; margin: 2px 0; }
 
-  .invite-lead{ font-family: var(--font-display); font-style:italic; font-size: 1.15rem; color: var(--gold-deep); margin-bottom: 10px; }
+  .invite-lead{ font-family: var(--font-display); font-style:italic; font-size: 1.15rem; color: var(--ink-soft); margin-bottom: 10px; }
   .invite-text{ font-size: .98rem; line-height:1.75; color: var(--ink-soft); max-width: 440px; margin: 0 auto 16px; }
   .date-line{ font-family: var(--font-display); font-size: 1.35rem; color: var(--ink); }
   .note-text{ font-style:italic; font-size: .88rem; line-height:1.6; color: var(--ink-soft); max-width: 400px; margin: 14px auto 0; }
@@ -231,46 +234,39 @@
 
   /* ---------- Tagesablauf: zentrale Zeitachse mit abwechselnd links/rechts angeordneten Programmpunkten ---------- */
   .timeline{
-    max-width: 480px; margin: 26px auto 0; position:relative;
+    max-width: 480px; margin: 30px auto 0; position:relative;
   }
   .timeline::before{
-    content:''; position:absolute; left:50%; top:4px; bottom:4px; width:3px;
-    transform: translateX(-50%); border-radius: 3px;
-    background: linear-gradient(to bottom, transparent, var(--gold-light) 4%, var(--gold) 14%, var(--gold-light) 86%, transparent);
+    content:''; position:absolute; left:50%; top:2px; bottom:2px; width:1px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent, var(--line) 6%, var(--line) 94%, transparent);
   }
   .tl-item{
-    display:grid; grid-template-columns: 1fr 78px 1fr; align-items:center;
-    column-gap: 16px; position:relative;
+    display:grid; grid-template-columns: 1fr 84px 1fr; align-items:center;
+    column-gap: 18px; position:relative;
   }
   .tl-side{ position:relative; min-height: 1px; }
   .tl-side.tl-left{ text-align: end; }
   .tl-side.tl-right{ text-align: start; }
   .tl-label{
-    display:inline-block; max-width: 210px;
-    font-family: var(--font-display); font-size: 1.12rem; font-weight:500;
-    line-height:1.38; letter-spacing:.01em; color: var(--ink);
+    display:inline-block; max-width: 190px;
+    font-family: var(--font-display); font-size: 1.05rem; font-weight:500;
+    line-height:1.4; letter-spacing:.01em; color: var(--ink);
+    border: 1px solid rgba(176,132,84,.38);
+    border-radius: 16px; padding: 10px 18px;
   }
   .tl-center{
-    display:flex; flex-direction:column; align-items:center; gap:9px;
-    padding: 28px 0; position:relative; z-index:1;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    padding: 30px 0; position:relative; z-index:1;
   }
-  /* Verbindungsstriche hängen an der Zeitmarke (fixe Höhe), nicht am Text —
-     so sitzen sie immer exakt auf der Mittelachse, egal wie lang das Label ist. */
-  .tl-center::before, .tl-center::after{
-    content:''; position:absolute; top:50%; width:11px; height:2px;
-    background: var(--gold-light); transform: translateY(-50%);
-  }
-  .tl-center::before{ right: 100%; }
-  .tl-center::after{ left: 100%; }
   .tl-time{
-    font-family: var(--font-body); font-weight:600; font-size: .78rem;
-    letter-spacing:.05em; color: var(--gold-deep);
-    background: var(--card-bg); padding: 2px 6px; white-space:nowrap;
+    font-size: .7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+    color: var(--gold-deep); background: var(--card-bg); padding: 2px 7px; white-space:nowrap;
   }
   .tl-dot{
-    width: 15px; height:15px; border-radius:50%;
-    background: var(--gold); border:3px solid var(--card-bg);
-    box-shadow: 0 0 0 1.5px var(--gold);
+    width: 7px; height:7px; border-radius:50%;
+    background: var(--card-bg); border:1.5px solid var(--gold);
+    box-shadow: 0 0 0 5px var(--card-bg);
   }
 
   .venue-name{ font-weight: 500; color: var(--ink); margin-top: 4px; }
@@ -319,9 +315,19 @@
   }
   .rsvp-submit:hover, .rsvp-submit:focus-visible{ background: var(--gold); transform: translateY(-2px); }
   .rsvp-submit:focus-visible{ outline: 2px solid var(--ink); outline-offset: 3px; }
-  .rsvp-hint{ text-align:center; font-size: .76rem; color: var(--ink-soft); margin-top: 12px; line-height:1.5; }
+  .rsvp-submit:disabled{ opacity:.6; cursor:default; transform:none; }
+  .rsvp-field-row{ display:flex; gap: 14px; }
+  .rsvp-field-row .rsvp-field{ flex:1; min-width:0; }
+  .rsvp-status{
+    text-align:center; font-size: .84rem; margin-top: 14px; line-height:1.5;
+    min-height: 1px; display:none;
+  }
+  .rsvp-status.show{ display:block; }
+  .rsvp-status.ok{ color: var(--gold-deep); }
+  .rsvp-status.error{ color: #A8493B; }
 
   [dir="rtl"] .rsvp-form{ text-align: right; }
+  [dir="rtl"] .rsvp-field-row{ direction: rtl; }
 
   .footer-note{ text-align:center; padding: 10px 20px 40px; }
   .footer-heart{ color: var(--gold); width:18px; height:18px; margin: 0 auto 8px; }
@@ -395,14 +401,14 @@
   @media (max-width: 480px){
     .card{ padding: 32px 20px; }
     .cd-box{ width: 66px; }
-    .tl-item{ grid-template-columns: 1fr 50px 1fr; column-gap: 12px; }
-    .tl-label{ max-width: 165px; font-size: .96rem; }
-    .tl-center{ padding: 22px 0; gap: 6px; }
-    .tl-center::before, .tl-center::after{ width: 8px; }
-    .tl-time{ font-size: .68rem; }
-    .tl-dot{ width: 12px; height:12px; border-width: 2.5px; }
+    .tl-item{ grid-template-columns: 1fr 58px 1fr; column-gap: 10px; }
+    .tl-label{ max-width: 148px; font-size: .9rem; padding: 8px 14px; border-radius: 13px; }
+    .tl-center{ padding: 24px 0; gap: 6px; }
+    .tl-time{ font-size: .62rem; letter-spacing:.12em; }
+    .tl-dot{ width: 6px; height:6px; box-shadow: 0 0 0 4px var(--card-bg); }
     .lang-pill{ padding: 10px 14px; gap: 10px; }
     #lang-screen .badge{ width: 50px; height: 50px; font-size: 32px; }
+    .rsvp-field-row{ flex-direction: column; gap: 18px; }
   }
 </style>
 </head>
@@ -469,8 +475,21 @@
   <div class="card-wrap">
 
     <article class="card" id="invite-card" data-animate>
-      <div class="card-icon">
-        <svg viewBox="0 0 48 48"><rect x="6" y="12" width="36" height="26" rx="3"/><path d="M6 14 L24 30 L42 14"/></svg>
+      <div class="card-icon gold-icon">
+        <svg viewBox="0 0 56 56">
+          <defs>
+            <linearGradient id="inviteGold" x1="10%" y1="0%" x2="90%" y2="100%">
+              <stop offset="0%" stop-color="#F0DFB8"/>
+              <stop offset="50%" stop-color="#B08454"/>
+              <stop offset="100%" stop-color="#8C6A3E"/>
+            </linearGradient>
+          </defs>
+          <circle cx="28" cy="28" r="19" fill="url(#inviteGold)"/>
+          <circle cx="28" cy="28" r="15.6" fill="#FBF7EF"/>
+          <circle cx="28" cy="28" r="15.6" fill="none" stroke="url(#inviteGold)" stroke-width="1.3"/>
+          <rect x="19" y="22.5" width="18" height="12" rx="1.2" fill="none" stroke="#8C6A3E" stroke-width="1.2"/>
+          <path d="M19.5 23.3 L28 30 L36.5 23.3" fill="none" stroke="#8C6A3E" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
       </div>
       <div class="card-divider"><span class="rule"></span></div>
       <p class="eyebrow" id="t-eyebrow">Hochzeitseinladung</p>
@@ -482,8 +501,38 @@
     </article>
 
     <article class="card" id="countdown-card" data-animate>
-      <div class="card-icon">
-        <svg viewBox="0 0 48 48"><circle cx="24" cy="26" r="16"/><path d="M24 16 L24 26 L31 30"/><path d="M18 6 L30 6"/><path d="M24 6 L24 10"/></svg>
+      <div class="card-icon gold-icon">
+        <svg viewBox="0 0 64 60">
+          <defs>
+            <linearGradient id="watchGold" x1="10%" y1="0%" x2="90%" y2="100%">
+              <stop offset="0%" stop-color="#F0DFB8"/>
+              <stop offset="45%" stop-color="#B08454"/>
+              <stop offset="100%" stop-color="#8C6A3E"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="32" cy="7" rx="4.4" ry="6" fill="none" stroke="url(#watchGold)" stroke-width="2.6"/>
+          <rect x="28.4" y="10.8" width="7.2" height="6.4" rx="2" fill="url(#watchGold)"/>
+          <circle cx="32" cy="38" r="18.6" fill="url(#watchGold)"/>
+          <circle cx="32" cy="38" r="15.4" fill="#FBF7EF"/>
+          <circle cx="32" cy="38" r="15.4" fill="none" stroke="url(#watchGold)" stroke-width="1.4"/>
+          <path d="M32 21.4 L32 24.5" stroke="#8C6A3E" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M48.6 38 L45.5 38" stroke="#8C6A3E" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M32 54.6 L32 51.5" stroke="#8C6A3E" stroke-width="1.3" stroke-linecap="round"/>
+          <path d="M15.4 38 L18.5 38" stroke="#8C6A3E" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="39.6" cy="24.84" r="0.7" fill="#8C6A3E"/>
+          <circle cx="45.16" cy="30.4" r="0.7" fill="#8C6A3E"/>
+          <circle cx="45.16" cy="45.6" r="0.7" fill="#8C6A3E"/>
+          <circle cx="39.6" cy="51.16" r="0.7" fill="#8C6A3E"/>
+          <circle cx="24.4" cy="51.16" r="0.7" fill="#8C6A3E"/>
+          <circle cx="18.84" cy="45.6" r="0.7" fill="#8C6A3E"/>
+          <circle cx="18.84" cy="30.4" r="0.7" fill="#8C6A3E"/>
+          <circle cx="24.4" cy="24.84" r="0.7" fill="#8C6A3E"/>
+          <path d="M32 38 L26.6 29.4" stroke="#5B4B3A" stroke-width="1.7" stroke-linecap="round" fill="none"/>
+          <circle cx="26.6" cy="29.4" r="1.2" fill="none" stroke="#5B4B3A" stroke-width="1.1"/>
+          <path d="M32 38 L40.2 24.6" stroke="#5B4B3A" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+          <circle cx="40.2" cy="24.6" r="1" fill="none" stroke="#5B4B3A" stroke-width="1"/>
+          <circle cx="32" cy="38" r="1.5" fill="#5B4B3A"/>
+        </svg>
       </div>
       <div class="card-divider"><span class="rule"></span></div>
       <p class="eyebrow" id="t-cd-title"></p>
@@ -496,8 +545,21 @@
     </article>
 
     <article class="card" id="schedule-card" data-animate>
-      <div class="card-icon">
-        <svg viewBox="0 0 48 48"><path d="M24 40 C24 40 8 30 8 18 C8 11 14 8 19 11 C21 12.5 24 16 24 16 C24 16 27 12.5 29 11 C34 8 40 11 40 18 C40 30 24 40 24 40 Z" transform="scale(0.9) translate(2.5,-2)"/><path d="M24 6 L24 16"/><path d="M12 10 L20 16"/><path d="M36 10 L28 16"/></svg>
+      <div class="card-icon gold-icon">
+        <svg viewBox="0 0 56 56">
+          <defs>
+            <linearGradient id="scheduleGold" x1="10%" y1="0%" x2="90%" y2="100%">
+              <stop offset="0%" stop-color="#F0DFB8"/>
+              <stop offset="50%" stop-color="#B08454"/>
+              <stop offset="100%" stop-color="#8C6A3E"/>
+            </linearGradient>
+          </defs>
+          <circle cx="28" cy="28" r="19" fill="url(#scheduleGold)"/>
+          <circle cx="28" cy="28" r="15.6" fill="#FBF7EF"/>
+          <circle cx="28" cy="28" r="15.6" fill="none" stroke="url(#scheduleGold)" stroke-width="1.3"/>
+          <path d="M21.5 19.5 h13 M21.5 36.5 h13 M22 19.5 L28 27.5 L22 36.5 M34 19.5 L28 27.5 L34 36.5"
+                fill="none" stroke="#8C6A3E" stroke-width="1.15" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
       </div>
       <div class="card-divider"><span class="rule"></span></div>
       <p class="eyebrow" id="t-schedule-title"></p>
@@ -505,29 +567,97 @@
     </article>
 
     <article class="card" id="venue-card" data-animate>
-      <div class="card-icon">
-        <svg viewBox="0 0 48 48"><path d="M24 6 C14 6 8 14 8 22 C8 32 24 42 24 42 C24 42 40 32 40 22 C40 14 34 6 24 6 Z"/><circle cx="24" cy="21" r="6"/></svg>
+      <div class="card-icon gold-icon">
+        <svg viewBox="0 0 56 56">
+          <defs>
+            <linearGradient id="venueGold" x1="10%" y1="0%" x2="90%" y2="100%">
+              <stop offset="0%" stop-color="#F0DFB8"/>
+              <stop offset="50%" stop-color="#B08454"/>
+              <stop offset="100%" stop-color="#8C6A3E"/>
+            </linearGradient>
+          </defs>
+          <circle cx="28" cy="28" r="19" fill="url(#venueGold)"/>
+          <circle cx="28" cy="28" r="15.6" fill="#FBF7EF"/>
+          <circle cx="28" cy="28" r="15.6" fill="none" stroke="url(#venueGold)" stroke-width="1.3"/>
+          <path d="M28 20 C24.3 20 21.6 22.8 21.6 26.2 C21.6 30.4 28 36.5 28 36.5 C28 36.5 34.4 30.4 34.4 26.2 C34.4 22.8 31.7 20 28 20 Z"
+                fill="none" stroke="#8C6A3E" stroke-width="1.2" stroke-linejoin="round"/>
+          <circle cx="28" cy="26" r="2.3" fill="none" stroke="#8C6A3E" stroke-width="1.1"/>
+        </svg>
       </div>
       <div class="card-divider"><span class="rule"></span></div>
       <p class="eyebrow" id="t-venue-title"></p>
-      <p class="venue-name">EEC Events GmbH</p>
+      <p class="venue-name">Elite Events &amp; Catering</p>
       <p class="venue-address" id="t-venue-address">Wilhelm-Iwan-Ring 3, 21035 Hamburg</p>
       <a class="map-btn" id="t-map-btn" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/search/?api=1&amp;query=EEC+Events+GmbH+Wilhelm-Iwan-Ring+3+21035+Hamburg"></a>
+         href="https://www.google.com/maps/search/?api=1&amp;query=Elite+Events+%26+Catering+Wilhelm-Iwan-Ring+3+21035+Hamburg"></a>
+    </article>
+
+    <article class="card" id="song-card" data-animate>
+      <div class="card-icon gold-icon">
+        <svg viewBox="0 0 56 56">
+          <defs>
+            <linearGradient id="songGold" x1="10%" y1="0%" x2="90%" y2="100%">
+              <stop offset="0%" stop-color="#F0DFB8"/>
+              <stop offset="50%" stop-color="#B08454"/>
+              <stop offset="100%" stop-color="#8C6A3E"/>
+            </linearGradient>
+          </defs>
+          <circle cx="28" cy="28" r="19" fill="url(#songGold)"/>
+          <circle cx="28" cy="28" r="15.6" fill="#FBF7EF"/>
+          <circle cx="28" cy="28" r="15.6" fill="none" stroke="url(#songGold)" stroke-width="1.3"/>
+          <circle cx="22" cy="33" r="2.6" fill="#8C6A3E"/>
+          <circle cx="32.5" cy="25.5" r="2.6" fill="#8C6A3E"/>
+          <path d="M24.5 33 V18.5 L35 16 V23.5" fill="none" stroke="#8C6A3E" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="card-divider"><span class="rule"></span></div>
+      <p class="eyebrow" id="t-song-title"></p>
+      <p class="rsvp-lead" id="t-song-lead"></p>
+
+      <form id="song-form" class="rsvp-form">
+        <div class="rsvp-field">
+          <label id="t-song-title-label" for="song-title"></label>
+          <input type="text" id="song-title" name="songTitle" required autocomplete="off">
+        </div>
+        <div class="rsvp-field">
+          <label id="t-song-artist-label" for="song-artist"></label>
+          <input type="text" id="song-artist" name="songArtist" required autocomplete="off">
+        </div>
+        <button type="submit" class="rsvp-submit" id="t-song-submit"></button>
+        <p class="rsvp-status" id="song-status"></p>
+      </form>
     </article>
 
     <article class="card" id="rsvp-card" data-animate>
-      <div class="card-icon">
-        <svg viewBox="0 0 48 48"><path d="M8 12 h32 v24 h-32 Z"/><path d="M8 13 L24 27 L40 13"/></svg>
+      <div class="card-icon gold-icon">
+        <svg viewBox="0 0 56 56">
+          <defs>
+            <linearGradient id="rsvpGold" x1="10%" y1="0%" x2="90%" y2="100%">
+              <stop offset="0%" stop-color="#F0DFB8"/>
+              <stop offset="50%" stop-color="#B08454"/>
+              <stop offset="100%" stop-color="#8C6A3E"/>
+            </linearGradient>
+          </defs>
+          <circle cx="28" cy="28" r="19" fill="url(#rsvpGold)"/>
+          <circle cx="28" cy="28" r="15.6" fill="#FBF7EF"/>
+          <circle cx="28" cy="28" r="15.6" fill="none" stroke="url(#rsvpGold)" stroke-width="1.3"/>
+          <path d="M28 33.5c-3.6-2.4-5.3-4.4-5.3-6.5 0-1.7 1.4-3 3-3 1.3 0 2.1.7 2.3 1.7.2-1 1-1.7 2.3-1.7 1.6 0 3 1.3 3 3 0 2.1-1.7 4.1-5.3 6.5z" fill="#8C6A3E"/>
+        </svg>
       </div>
       <div class="card-divider"><span class="rule"></span></div>
       <p class="eyebrow" id="t-rsvp-title"></p>
       <p class="rsvp-lead" id="t-rsvp-lead"></p>
 
       <form id="rsvp-form" class="rsvp-form">
-        <div class="rsvp-field">
-          <label id="t-rsvp-name-label" for="rsvp-name"></label>
-          <input type="text" id="rsvp-name" name="name" required autocomplete="name">
+        <div class="rsvp-field-row">
+          <div class="rsvp-field">
+            <label id="t-rsvp-firstname-label" for="rsvp-firstname"></label>
+            <input type="text" id="rsvp-firstname" name="firstName" required autocomplete="given-name">
+          </div>
+          <div class="rsvp-field">
+            <label id="t-rsvp-lastname-label" for="rsvp-lastname"></label>
+            <input type="text" id="rsvp-lastname" name="lastName" required autocomplete="family-name">
+          </div>
         </div>
 
         <div class="rsvp-field">
@@ -555,7 +685,7 @@
         </div>
 
         <button type="submit" class="rsvp-submit" id="t-rsvp-submit"></button>
-        <p class="rsvp-hint" id="t-rsvp-hint"></p>
+        <p class="rsvp-status" id="rsvp-status"></p>
       </form>
     </article>
 
@@ -581,6 +711,9 @@
   </button>
   <button class="jump-btn" data-target="venue-card" id="jump-venue" type="button">
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6 C14 6 8 14 8 22 C8 32 24 42 24 42 C24 42 40 32 40 22 C40 14 34 6 24 6 Z"/><circle cx="24" cy="21" r="5.2"/></svg>
+  </button>
+  <button class="jump-btn" data-target="song-card" id="jump-song" type="button">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="33" r="4.4"/><circle cx="34" cy="26" r="4.4"/><path d="M21.4 33 V13.5 L38.4 9 V22" stroke-linejoin="round"/></svg>
   </button>
   <button class="jump-btn" data-target="rsvp-card" id="jump-rsvp" type="button">
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12 h32 v24 h-32 Z"/><path d="M8 13 L24 27 L40 13"/></svg>
@@ -614,10 +747,10 @@
       bismillahCaption: 'Im Namen Gottes, des Allerbarmers, des Barmherzigen',
       eyebrow: 'Hochzeitseinladung',
       name1: 'Valmir Bajrami', name2: 'Nazanin Amiri',
-      inviteLead: 'Mit großer Freude laden wir euch ein, unseren schönsten Tag mit uns zu feiern.',
-      invite: 'Gemeinsam möchten wir den Beginn unseres neuen Lebenswegs mit unseren liebsten Menschen feiern. Eure Anwesenheit macht diesen besonderen Tag für uns unvergesslich.',
+      inviteLead: 'Mit großer Freude laden wir euch ein, den Beginn unseres gemeinsamen Lebensweges mit uns zu feiern.',
+      invite: 'Eure Anwesenheit an diesem besonderen Tag bedeutet uns unendlich viel und macht ihn für uns unvergesslich.',
       date: 'Freitag, 02. Oktober 2026<br>Beginn: 17:00 Uhr',
-      kidsNote: 'Wir haben uns entschieden, unsere Feier kinderfrei zu gestalten – wir hoffen, ihr könnt diesen Abend als kleine Auszeit genießen.',
+      kidsNote: 'Unsere Feier möchten wir gerne ohne Kinder gestalten und hoffen, dass ihr den Abend als kleine Auszeit genießen und gemeinsam mit uns feiern könnt.',
       cdTitle: 'Countdown',
       days: 'Tage', hours: 'Std', minutes: 'Min', seconds: 'Sek',
       scheduleTitle: 'Tagesablauf',
@@ -633,16 +766,25 @@
       venueAddress: 'Wilhelm-Iwan-Ring 3, 21035 Hamburg',
       mapBtn: 'Auf Google Maps öffnen',
       footer: 'Wir freuen uns auf euch!',
+      songTitle: 'Musikwünsche',
+      songLead: 'Welches Lied darf auf keinen Fall auf der Tanzfläche fehlen? Wir freuen uns über eure Wünsche!',
+      songTitleLabel: 'Songtitel',
+      songArtistLabel: 'Interpret',
+      songSubmit: 'Wunsch senden',
+      songSuccessMsg: 'Danke! Euer Musikwunsch ist angekommen.',
+      songErrorMsg: 'Das hat leider nicht geklappt. Bitte versucht es gleich noch einmal.',
       rsvpTitle: 'Rückmeldung',
-      rsvpLead: 'Wir würden uns sehr freuen, wenn ihr uns bis zum 01. September 2026 kurz Bescheid gebt, ob ihr dabei sein könnt.',
-      rsvpNameLabel: 'Name',
+      rsvpLead: 'Bitte gebt uns bis zum 1. September 2026 kurz Bescheid, ob ihr dabei sein könnt.',
+      rsvpFirstnameLabel: 'Vorname',
+      rsvpLastnameLabel: 'Nachname',
       rsvpAttendLabel: 'Kommst du?',
       rsvpYes: 'Ich komme gerne',
       rsvpNo: 'Ich kann leider nicht',
       rsvpGuestsLabel: 'Anzahl Personen',
       rsvpNoteLabel: 'Anmerkungen (z. B. Allergien, Unverträglichkeiten)',
       rsvpSubmit: 'Absenden',
-      rsvpHint: 'Beim Absenden öffnet sich dein E-Mail-Programm mit einer fertigen Nachricht – bitte dort einfach auf „Senden" tippen.'
+      rsvpSuccessMsg: 'Danke für eure Rückmeldung! Wir freuen uns.',
+      rsvpErrorMsg: 'Das hat leider nicht geklappt. Bitte versucht es gleich noch einmal.'
     },
     sq: {
       dir: 'ltr', bodyClass: '',
@@ -674,16 +816,25 @@
       venueAddress: 'Wilhelm-Iwan-Ring 3, 21035 Hamburg',
       mapBtn: 'Hape në Google Maps',
       footer: 'Presim me padurim t’ju shohim!',
+      songTitle: 'Kërkesa për Muzikë',
+      songLead: 'Cila këngë nuk duhet të mungojë në pistën e vallëzimit? Do të gëzoheshim për sugjerimet tuaja!',
+      songTitleLabel: 'Titulli i këngës',
+      songArtistLabel: 'Interpretuesi',
+      songSubmit: 'Dërgo kërkesën',
+      songSuccessMsg: 'Faleminderit! Kërkesa juaj për këngën u dërgua.',
+      songErrorMsg: 'Diçka shkoi keq. Ju lutemi provoni përsëri.',
       rsvpTitle: 'Konfirmim',
-      rsvpLead: 'Do të ishim shumë të lumtur nëse na konfirmoni deri më 01 Shtator 2026 nëse do të jeni me ne.',
-      rsvpNameLabel: 'Emri',
+      rsvpLead: 'Ju lutemi na konfirmoni deri më 1 Shtator 2026 nëse do të jeni me ne.',
+      rsvpFirstnameLabel: 'Emri',
+      rsvpLastnameLabel: 'Mbiemri',
       rsvpAttendLabel: 'A do të vish?',
       rsvpYes: 'Po, do të vij',
       rsvpNo: 'Fatkeqësisht jo',
       rsvpGuestsLabel: 'Numri i personave',
       rsvpNoteLabel: 'Shënime (p.sh. alergji)',
       rsvpSubmit: 'Dërgo',
-      rsvpHint: 'Pas dërgimit hapet programi juaj i email-it me një mesazh të gatshëm – ju lutem shtypni „Dërgo" atje.'
+      rsvpSuccessMsg: 'Faleminderit për konfirmimin! Do të gëzohemi t’ju shohim.',
+      rsvpErrorMsg: 'Diçka shkoi keq. Ju lutemi provoni përsëri.'
     },
     fa: {
       dir: 'rtl', bodyClass: 'lang-fa',
@@ -696,10 +847,10 @@
       bismillahCaption: '',
       eyebrow: 'دعوت‌نامهٔ عروسی',
       name1: 'ولمیر بایرامی', name2: 'نازنین امیری',
-      inviteLead: 'با خوشی فراوان، شما را صمیمانه دعوت می‌کنیم تا زیباترین روز زندگی ما را با ما جشن بگیرید.',
-      invite: 'می‌خواهیم آغاز فصل نو زندگی‌مان را در کنار عزیزترین انسان‌های زندگی‌مان جشن بگیریم. حضور شما این روز ویژه را برای ما به‌یادماندنی و فراموش‌نشدنی خواهد ساخت.',
+      inviteLead: 'با خوشی فراوان، شما را صمیمانه دعوت می‌کنیم تا در زیباترین روز زندگی ما در کنار ما باشید.',
+      invite: 'می‌خواهیم آغاز فصل نو زندگی‌مان را در کنار عزیزترین‌های‌مان جشن بگیریم. حضور شما در این روز خاص، برای ما باعث خوشی خواهد بود.',
       date: 'جمعه، 2 اکتوبر 2026 ساعت 17:00',
-      kidsNote: 'ما تصمیم گرفته‌ایم جشن خود را بدون حضور کودکان برگزار کنیم – امیدواریم این شب را همچون فرصتی کوچک برای آرامش خودتان لذت ببرید.',
+      kidsNote: 'ما تصمیم گرفته‌ایم جشن خود را بدون حضور کودکان برگزار کنیم – امیدواریم از این شب به‌عنوان فرصتی برای استراحت و خوش‌گذرانی لذت ببرید.',
       cdTitle: 'شمارش معکوس',
       days: 'روز', hours: 'ساعت', minutes: 'دقیقه', seconds: 'ثانیه',
       scheduleTitle: 'برنامهٔ مراسم',
@@ -715,16 +866,25 @@
       venueAddress: 'Wilhelm-Iwan-Ring 3, 21035 Hamburg',
       mapBtn: 'نمایش در گوگل مپس',
       footer: 'منتظر دیدار شما هستیم!',
+      songTitle: 'درخواست آهنگ',
+      songLead: 'کدام آهنگ نباید در پیست رقص جا بماند؟ خوشحال می‌شویم اگر پیشنهاد خود را با ما در میان بگذارید!',
+      songTitleLabel: 'نام آهنگ',
+      songArtistLabel: 'خواننده',
+      songSubmit: 'ارسال درخواست',
+      songSuccessMsg: 'متشکریم! درخواست آهنگ شما ثبت شد.',
+      songErrorMsg: 'متأسفانه ارسال انجام نشد. لطفاً دوباره تلاش کنید.',
       rsvpTitle: 'اعلام حضور',
-      rsvpLead: 'خوشحال می‌شویم اگر تا تاریخ ۱ سپتامبر ۲۰۲۶ به ما اطلاع دهید که در این مراسم حضور خواهید داشت یا خیر.',
-      rsvpNameLabel: 'نام',
+      rsvpLead: 'لطفاً تا تاریخ ۱ سپتامبر ۲۰۲۶ به ما اطلاع دهید که در این مراسم حضور خواهید داشت یا خیر.',
+      rsvpFirstnameLabel: 'نام',
+      rsvpLastnameLabel: 'نام خانوادگی',
       rsvpAttendLabel: 'آیا حضور خواهید داشت؟',
       rsvpYes: 'بله، حضور خواهم داشت',
       rsvpNo: 'متأسفانه خیر',
       rsvpGuestsLabel: 'تعداد نفرات',
       rsvpNoteLabel: 'توضیحات (مثلاً حساسیت‌های غذایی)',
       rsvpSubmit: 'ارسال',
-      rsvpHint: 'پس از ارسال، برنامهٔ ایمیل شما با پیامی آماده باز می‌شود – لطفاً در آنجا روی «ارسال» بزنید.'
+      rsvpSuccessMsg: 'متشکریم از اعلام حضورتان! منتظر دیدارتان هستیم.',
+      rsvpErrorMsg: 'متأسفانه ارسال انجام نشد. لطفاً دوباره تلاش کنید.'
     }
   };
 
@@ -815,21 +975,28 @@
     document.getElementById('t-map-btn').textContent = t.mapBtn;
     document.getElementById('t-footer').textContent = t.footer;
 
+    document.getElementById('t-song-title').textContent = t.songTitle;
+    document.getElementById('t-song-lead').textContent = t.songLead;
+    document.getElementById('t-song-title-label').textContent = t.songTitleLabel;
+    document.getElementById('t-song-artist-label').textContent = t.songArtistLabel;
+    document.getElementById('t-song-submit').textContent = t.songSubmit;
+
     document.getElementById('t-rsvp-title').textContent = t.rsvpTitle;
     document.getElementById('t-rsvp-lead').textContent = t.rsvpLead;
-    document.getElementById('t-rsvp-name-label').textContent = t.rsvpNameLabel;
+    document.getElementById('t-rsvp-firstname-label').textContent = t.rsvpFirstnameLabel;
+    document.getElementById('t-rsvp-lastname-label').textContent = t.rsvpLastnameLabel;
     document.getElementById('t-rsvp-attend-label').textContent = t.rsvpAttendLabel;
     document.getElementById('t-rsvp-yes').textContent = t.rsvpYes;
     document.getElementById('t-rsvp-no').textContent = t.rsvpNo;
     document.getElementById('t-rsvp-guests-label').textContent = t.rsvpGuestsLabel;
     document.getElementById('t-rsvp-note-label').textContent = t.rsvpNoteLabel;
     document.getElementById('t-rsvp-submit').textContent = t.rsvpSubmit;
-    document.getElementById('t-rsvp-hint').textContent = t.rsvpHint;
 
     document.getElementById('jump-invite').setAttribute('aria-label', t.eyebrow);
     document.getElementById('jump-countdown').setAttribute('aria-label', t.cdTitle);
     document.getElementById('jump-schedule').setAttribute('aria-label', t.scheduleTitle);
     document.getElementById('jump-venue').setAttribute('aria-label', t.venueTitle);
+    document.getElementById('jump-song').setAttribute('aria-label', t.songTitle);
     document.getElementById('jump-rsvp').setAttribute('aria-label', t.rsvpTitle);
 
     document.querySelectorAll('.step, #site').forEach(el => el.setAttribute('dir', t.dir));
@@ -925,7 +1092,7 @@
 
   function unlockSite(){
     document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-    document.getElementById('lang-float').classList.remove('visible');
+    document.getElementById('lang-float').classList.add('visible');
     document.body.classList.remove('intro-lock');
     const site = document.getElementById('site');
     site.classList.add('visible');
@@ -999,13 +1166,38 @@
     if(target){ jumpObserver.observe(target); }
   });
 
-  /* ---------- RSVP-Formular: baut eine mailto:-Nachricht mit fixem Betreff,
-     damit später eine Outlook-Regel zuverlässig darauf filtern kann. ---------- */
-  const RSVP_EMAIL = 'valmir.bajrami@hotmail.de';
-  const RSVP_SUBJECT = 'Hochzeit RSVP – Valmir & Nazanin';
+  /* ---------- Anbindung an Google Apps Script (schreibt direkt in ein Google Sheet
+     mit zwei Tabellenblättern: "Gästeliste" und "Wunschsongs"). Die Web-App-URL
+     hier eintragen, nachdem das Skript in Google Sheets veröffentlicht wurde:
+     Erweiterungen → Apps Script → Bereitstellen → Web-App → "Jeder" hat Zugriff. ---------- */
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzY9JyXwg9kr9ZX-Syeyqns6n0ZRGIkMdyZCDBl1j7FsCtfpzIqJbRkZfsNJDcC-jGy/exec';
+
+  function submitToSheet(payload, statusEl, submitBtn, successMsg, errorMsg){
+    statusEl.classList.remove('show', 'ok', 'error');
+    submitBtn.disabled = true;
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    })
+      .then(res => res.ok ? res.json().catch(()=>({result:'success'})) : Promise.reject())
+      .then(data=>{
+        if(data && data.result === 'error'){ throw new Error(data.message || 'error'); }
+        statusEl.textContent = successMsg;
+        statusEl.classList.add('show', 'ok');
+        submitBtn.style.display = 'none';
+      })
+      .catch(()=>{
+        statusEl.textContent = errorMsg;
+        statusEl.classList.add('show', 'error');
+        submitBtn.disabled = false;
+      });
+  }
+
   const rsvpForm = document.getElementById('rsvp-form');
   const rsvpGuestsField = document.getElementById('rsvp-guests-field');
   const rsvpAttendRadios = rsvpForm.querySelectorAll('input[name="attending"]');
+  const rsvpStatus = document.getElementById('rsvp-status');
+  const rsvpSubmitBtn = document.getElementById('t-rsvp-submit');
 
   function syncRsvpGuestsVisibility(){
     const attending = rsvpForm.querySelector('input[name="attending"]:checked').value;
@@ -1016,23 +1208,31 @@
 
   rsvpForm.addEventListener('submit', (e)=>{
     e.preventDefault();
-    const name = document.getElementById('rsvp-name').value.trim();
-    const attending = rsvpForm.querySelector('input[name="attending"]:checked').value;
-    const guests = document.getElementById('rsvp-guests').value;
-    const note = document.getElementById('rsvp-note').value.trim();
+    const t = translations[currentLang];
+    const payload = {
+      type: 'rsvp',
+      firstName: document.getElementById('rsvp-firstname').value.trim(),
+      lastName: document.getElementById('rsvp-lastname').value.trim(),
+      attending: rsvpForm.querySelector('input[name="attending"]:checked').value,
+      guests: document.getElementById('rsvp-guests').value,
+      note: document.getElementById('rsvp-note').value.trim()
+    };
+    submitToSheet(payload, rsvpStatus, rsvpSubmitBtn, t.rsvpSuccessMsg, t.rsvpErrorMsg);
+  });
 
-    const attendingText = attending === 'yes' ? 'Zusage' : 'Absage';
-    const bodyLines = [
-      'Name: ' + name,
-      'Rückmeldung: ' + attendingText
-    ];
-    if(attending === 'yes'){ bodyLines.push('Anzahl Personen: ' + guests); }
-    bodyLines.push('Anmerkungen: ' + (note || '-'));
+  const songForm = document.getElementById('song-form');
+  const songStatus = document.getElementById('song-status');
+  const songSubmitBtn = document.getElementById('t-song-submit');
 
-    const mailtoUrl = 'mailto:' + RSVP_EMAIL
-      + '?subject=' + encodeURIComponent(RSVP_SUBJECT)
-      + '&body=' + encodeURIComponent(bodyLines.join('\n'));
-    window.location.href = mailtoUrl;
+  songForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const t = translations[currentLang];
+    const payload = {
+      type: 'song',
+      songTitle: document.getElementById('song-title').value.trim(),
+      songArtist: document.getElementById('song-artist').value.trim()
+    };
+    submitToSheet(payload, songStatus, songSubmitBtn, t.songSuccessMsg, t.songErrorMsg);
   });
 
   soundToggle.addEventListener('click', ()=>{
