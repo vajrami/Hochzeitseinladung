@@ -231,44 +231,39 @@
 
   /* ---------- Tagesablauf: zentrale Zeitachse mit abwechselnd links/rechts angeordneten Programmpunkten ---------- */
   .timeline{
-    max-width: 480px; margin: 26px auto 0; position:relative;
+    max-width: 480px; margin: 30px auto 0; position:relative;
   }
   .timeline::before{
-    content:''; position:absolute; left:50%; top:4px; bottom:4px; width:3px;
-    transform: translateX(-50%); border-radius: 3px;
-    background: linear-gradient(to bottom, transparent, var(--gold-light) 4%, var(--gold) 14%, var(--gold-light) 86%, transparent);
+    content:''; position:absolute; left:50%; top:2px; bottom:2px; width:1px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent, var(--line) 6%, var(--line) 94%, transparent);
   }
   .tl-item{
-    display:grid; grid-template-columns: 1fr 78px 1fr; align-items:center;
-    column-gap: 10px; position:relative;
+    display:grid; grid-template-columns: 1fr 84px 1fr; align-items:center;
+    column-gap: 18px; position:relative;
   }
   .tl-side{ position:relative; min-height: 1px; }
   .tl-side.tl-left{ text-align: end; }
   .tl-side.tl-right{ text-align: start; }
-  .tl-side.tl-left::after, .tl-side.tl-right::after{
-    content:''; position:absolute; top:50%; width:18px; height:2px;
-    background: var(--gold-light);
-  }
-  .tl-side.tl-left::after{ inset-inline-end: 0; }
-  .tl-side.tl-right::after{ inset-inline-start: 0; }
   .tl-label{
-    display:inline-block; max-width: 210px;
-    font-family: var(--font-display); font-size: 1.12rem; font-weight:500;
-    line-height:1.38; letter-spacing:.01em; color: var(--ink);
+    display:inline-block; max-width: 190px;
+    font-family: var(--font-display); font-size: 1.05rem; font-weight:500;
+    line-height:1.4; letter-spacing:.01em; color: var(--ink);
+    border: 1px solid rgba(176,132,84,.38);
+    border-radius: 16px; padding: 10px 18px;
   }
   .tl-center{
-    display:flex; flex-direction:column; align-items:center; gap:9px;
-    padding: 28px 0; position:relative; z-index:1;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    padding: 30px 0; position:relative; z-index:1;
   }
   .tl-time{
-    font-family: var(--font-body); font-weight:600; font-size: .78rem;
-    letter-spacing:.05em; color: var(--gold-deep);
-    background: var(--card-bg); padding: 2px 6px; white-space:nowrap;
+    font-size: .7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase;
+    color: var(--gold-deep); background: var(--card-bg); padding: 2px 7px; white-space:nowrap;
   }
   .tl-dot{
-    width: 15px; height:15px; border-radius:50%;
-    background: var(--gold); border:3px solid var(--card-bg);
-    box-shadow: 0 0 0 1.5px var(--gold);
+    width: 7px; height:7px; border-radius:50%;
+    background: var(--card-bg); border:1.5px solid var(--gold);
+    box-shadow: 0 0 0 5px var(--card-bg);
   }
 
   .venue-name{ font-weight: 500; color: var(--ink); margin-top: 4px; }
@@ -281,6 +276,45 @@
   }
   .map-btn:hover, .map-btn:focus-visible{ background: var(--gold); transform: translateY(-2px); }
   .map-btn:focus-visible{ outline: 2px solid var(--ink); outline-offset: 3px; }
+
+  /* ---------- RSVP-Formular ---------- */
+  .rsvp-lead{ color: var(--ink-soft); line-height:1.6; max-width: 420px; margin: 0 auto 24px; }
+  .rsvp-form{ max-width: 380px; margin: 0 auto; text-align: left; }
+  .rsvp-field{ margin-bottom: 18px; }
+  .rsvp-field label{
+    display:block; font-size: .72rem; letter-spacing:.1em; text-transform:uppercase;
+    color: var(--gold-deep); margin-bottom: 7px;
+  }
+  .rsvp-field input[type="text"],
+  .rsvp-field input[type="number"],
+  .rsvp-field textarea{
+    width: 100%; box-sizing:border-box; font-family: var(--font-body); font-size: .95rem;
+    color: var(--ink); background: var(--card-bg);
+    border: none; border-bottom: 1.5px solid var(--line);
+    padding: 9px 2px; transition: border-color .3s ease; resize: vertical;
+  }
+  .rsvp-field input:focus, .rsvp-field textarea:focus{
+    outline: none; border-color: var(--gold-deep);
+  }
+  .rsvp-toggle{ display:flex; gap: 22px; }
+  .rsvp-radio{
+    display:flex; align-items:center; gap: 8px; cursor:pointer;
+    font-size: .92rem; color: var(--ink); text-transform:none; letter-spacing:normal;
+  }
+  .rsvp-radio input{ accent-color: var(--gold-deep); width:16px; height:16px; cursor:pointer; }
+  #rsvp-guests-field{ transition: opacity .3s ease; }
+  #rsvp-guests-field.hidden{ display:none; }
+  .rsvp-submit{
+    display:block; width:100%; background: var(--gold-deep); color: var(--card-bg);
+    border:none; cursor:pointer; padding: 14px 26px; border-radius: 999px;
+    font-family: var(--font-body); font-size: .82rem; letter-spacing: .12em; text-transform: uppercase;
+    transition: background .3s ease, transform .3s ease; margin-top: 6px;
+  }
+  .rsvp-submit:hover, .rsvp-submit:focus-visible{ background: var(--gold); transform: translateY(-2px); }
+  .rsvp-submit:focus-visible{ outline: 2px solid var(--ink); outline-offset: 3px; }
+  .rsvp-hint{ text-align:center; font-size: .76rem; color: var(--ink-soft); margin-top: 12px; line-height:1.5; }
+
+  [dir="rtl"] .rsvp-form{ text-align: right; }
 
   .footer-note{ text-align:center; padding: 10px 20px 40px; }
   .footer-heart{ color: var(--gold); width:18px; height:18px; margin: 0 auto 8px; }
@@ -354,11 +388,11 @@
   @media (max-width: 480px){
     .card{ padding: 32px 20px; }
     .cd-box{ width: 66px; }
-    .tl-item{ grid-template-columns: 1fr 50px 1fr; column-gap: 8px; }
-    .tl-label{ max-width: 165px; font-size: .96rem; }
-    .tl-center{ padding: 22px 0; gap: 6px; }
-    .tl-time{ font-size: .68rem; }
-    .tl-dot{ width: 12px; height:12px; border-width: 2.5px; }
+    .tl-item{ grid-template-columns: 1fr 58px 1fr; column-gap: 10px; }
+    .tl-label{ max-width: 148px; font-size: .9rem; padding: 8px 14px; border-radius: 13px; }
+    .tl-center{ padding: 24px 0; gap: 6px; }
+    .tl-time{ font-size: .62rem; letter-spacing:.12em; }
+    .tl-dot{ width: 6px; height:6px; box-shadow: 0 0 0 4px var(--card-bg); }
     .lang-pill{ padding: 10px 14px; gap: 10px; }
     #lang-screen .badge{ width: 50px; height: 50px; font-size: 32px; }
   }
@@ -474,6 +508,49 @@
          href="https://www.google.com/maps/search/?api=1&amp;query=EEC+Events+GmbH+Wilhelm-Iwan-Ring+3+21035+Hamburg"></a>
     </article>
 
+    <article class="card" id="rsvp-card" data-animate>
+      <div class="card-icon">
+        <svg viewBox="0 0 48 48"><path d="M8 12 h32 v24 h-32 Z"/><path d="M8 13 L24 27 L40 13"/></svg>
+      </div>
+      <div class="card-divider"><span class="rule"></span></div>
+      <p class="eyebrow" id="t-rsvp-title"></p>
+      <p class="rsvp-lead" id="t-rsvp-lead"></p>
+
+      <form id="rsvp-form" class="rsvp-form">
+        <div class="rsvp-field">
+          <label id="t-rsvp-name-label" for="rsvp-name"></label>
+          <input type="text" id="rsvp-name" name="name" required autocomplete="name">
+        </div>
+
+        <div class="rsvp-field">
+          <label id="t-rsvp-attend-label"></label>
+          <div class="rsvp-toggle">
+            <label class="rsvp-radio">
+              <input type="radio" name="attending" value="yes" checked>
+              <span id="t-rsvp-yes"></span>
+            </label>
+            <label class="rsvp-radio">
+              <input type="radio" name="attending" value="no">
+              <span id="t-rsvp-no"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="rsvp-field" id="rsvp-guests-field">
+          <label id="t-rsvp-guests-label" for="rsvp-guests"></label>
+          <input type="number" id="rsvp-guests" name="guests" min="1" max="10" value="1" inputmode="numeric">
+        </div>
+
+        <div class="rsvp-field">
+          <label id="t-rsvp-note-label" for="rsvp-note"></label>
+          <textarea id="rsvp-note" name="note" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="rsvp-submit" id="t-rsvp-submit"></button>
+        <p class="rsvp-hint" id="t-rsvp-hint"></p>
+      </form>
+    </article>
+
   </div>
 
   <div class="footer-note">
@@ -496,6 +573,9 @@
   </button>
   <button class="jump-btn" data-target="venue-card" id="jump-venue" type="button">
     <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6 C14 6 8 14 8 22 C8 32 24 42 24 42 C24 42 40 32 40 22 C40 14 34 6 24 6 Z"/><circle cx="24" cy="21" r="5.2"/></svg>
+  </button>
+  <button class="jump-btn" data-target="rsvp-card" id="jump-rsvp" type="button">
+    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12 h32 v24 h-32 Z"/><path d="M8 13 L24 27 L40 13"/></svg>
   </button>
 </nav>
 
@@ -544,7 +624,17 @@
       venueTitle: 'Ort der Feier',
       venueAddress: 'Wilhelm-Iwan-Ring 3, 21035 Hamburg',
       mapBtn: 'Auf Google Maps öffnen',
-      footer: 'Wir freuen uns auf euch!'
+      footer: 'Wir freuen uns auf euch!',
+      rsvpTitle: 'Rückmeldung',
+      rsvpLead: 'Wir würden uns sehr freuen, wenn ihr uns bis zum 01. September 2026 kurz Bescheid gebt, ob ihr dabei sein könnt.',
+      rsvpNameLabel: 'Name',
+      rsvpAttendLabel: 'Kommst du?',
+      rsvpYes: 'Ich komme gerne',
+      rsvpNo: 'Ich kann leider nicht',
+      rsvpGuestsLabel: 'Anzahl Personen',
+      rsvpNoteLabel: 'Anmerkungen (z. B. Allergien, Unverträglichkeiten)',
+      rsvpSubmit: 'Absenden',
+      rsvpHint: 'Beim Absenden öffnet sich dein E-Mail-Programm mit einer fertigen Nachricht – bitte dort einfach auf „Senden" tippen.'
     },
     sq: {
       dir: 'ltr', bodyClass: '',
@@ -575,7 +665,17 @@
       venueTitle: 'Vendi i Festës',
       venueAddress: 'Wilhelm-Iwan-Ring 3, 21035 Hamburg',
       mapBtn: 'Hape në Google Maps',
-      footer: 'Presim me padurim t’ju shohim!'
+      footer: 'Presim me padurim t’ju shohim!',
+      rsvpTitle: 'Konfirmim',
+      rsvpLead: 'Do të ishim shumë të lumtur nëse na konfirmoni deri më 01 Shtator 2026 nëse do të jeni me ne.',
+      rsvpNameLabel: 'Emri',
+      rsvpAttendLabel: 'A do të vish?',
+      rsvpYes: 'Po, do të vij',
+      rsvpNo: 'Fatkeqësisht jo',
+      rsvpGuestsLabel: 'Numri i personave',
+      rsvpNoteLabel: 'Shënime (p.sh. alergji)',
+      rsvpSubmit: 'Dërgo',
+      rsvpHint: 'Pas dërgimit hapet programi juaj i email-it me një mesazh të gatshëm – ju lutem shtypni „Dërgo" atje.'
     },
     fa: {
       dir: 'rtl', bodyClass: 'lang-fa',
@@ -606,7 +706,17 @@
       venueTitle: 'محل مراسم',
       venueAddress: 'Wilhelm-Iwan-Ring 3, 21035 Hamburg',
       mapBtn: 'نمایش در گوگل مپس',
-      footer: 'منتظر دیدار شما هستیم!'
+      footer: 'منتظر دیدار شما هستیم!',
+      rsvpTitle: 'اعلام حضور',
+      rsvpLead: 'خوشحال می‌شویم اگر تا تاریخ ۱ سپتامبر ۲۰۲۶ به ما اطلاع دهید که در این مراسم حضور خواهید داشت یا خیر.',
+      rsvpNameLabel: 'نام',
+      rsvpAttendLabel: 'آیا حضور خواهید داشت؟',
+      rsvpYes: 'بله، حضور خواهم داشت',
+      rsvpNo: 'متأسفانه خیر',
+      rsvpGuestsLabel: 'تعداد نفرات',
+      rsvpNoteLabel: 'توضیحات (مثلاً حساسیت‌های غذایی)',
+      rsvpSubmit: 'ارسال',
+      rsvpHint: 'پس از ارسال، برنامهٔ ایمیل شما با پیامی آماده باز می‌شود – لطفاً در آنجا روی «ارسال» بزنید.'
     }
   };
 
@@ -697,10 +807,22 @@
     document.getElementById('t-map-btn').textContent = t.mapBtn;
     document.getElementById('t-footer').textContent = t.footer;
 
+    document.getElementById('t-rsvp-title').textContent = t.rsvpTitle;
+    document.getElementById('t-rsvp-lead').textContent = t.rsvpLead;
+    document.getElementById('t-rsvp-name-label').textContent = t.rsvpNameLabel;
+    document.getElementById('t-rsvp-attend-label').textContent = t.rsvpAttendLabel;
+    document.getElementById('t-rsvp-yes').textContent = t.rsvpYes;
+    document.getElementById('t-rsvp-no').textContent = t.rsvpNo;
+    document.getElementById('t-rsvp-guests-label').textContent = t.rsvpGuestsLabel;
+    document.getElementById('t-rsvp-note-label').textContent = t.rsvpNoteLabel;
+    document.getElementById('t-rsvp-submit').textContent = t.rsvpSubmit;
+    document.getElementById('t-rsvp-hint').textContent = t.rsvpHint;
+
     document.getElementById('jump-invite').setAttribute('aria-label', t.eyebrow);
     document.getElementById('jump-countdown').setAttribute('aria-label', t.cdTitle);
     document.getElementById('jump-schedule').setAttribute('aria-label', t.scheduleTitle);
     document.getElementById('jump-venue').setAttribute('aria-label', t.venueTitle);
+    document.getElementById('jump-rsvp').setAttribute('aria-label', t.rsvpTitle);
 
     document.querySelectorAll('.step, #site').forEach(el => el.setAttribute('dir', t.dir));
     updateCountdown();
@@ -867,6 +989,42 @@
   jumpButtons.forEach(btn=>{
     const target = document.getElementById(btn.dataset.target);
     if(target){ jumpObserver.observe(target); }
+  });
+
+  /* ---------- RSVP-Formular: baut eine mailto:-Nachricht mit fixem Betreff,
+     damit später eine Outlook-Regel zuverlässig darauf filtern kann. ---------- */
+  const RSVP_EMAIL = 'valmir.bajrami@hotmail.de';
+  const RSVP_SUBJECT = 'Hochzeit RSVP – Valmir & Nazanin';
+  const rsvpForm = document.getElementById('rsvp-form');
+  const rsvpGuestsField = document.getElementById('rsvp-guests-field');
+  const rsvpAttendRadios = rsvpForm.querySelectorAll('input[name="attending"]');
+
+  function syncRsvpGuestsVisibility(){
+    const attending = rsvpForm.querySelector('input[name="attending"]:checked').value;
+    rsvpGuestsField.classList.toggle('hidden', attending === 'no');
+  }
+  rsvpAttendRadios.forEach(r => r.addEventListener('change', syncRsvpGuestsVisibility));
+  syncRsvpGuestsVisibility();
+
+  rsvpForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = document.getElementById('rsvp-name').value.trim();
+    const attending = rsvpForm.querySelector('input[name="attending"]:checked').value;
+    const guests = document.getElementById('rsvp-guests').value;
+    const note = document.getElementById('rsvp-note').value.trim();
+
+    const attendingText = attending === 'yes' ? 'Zusage' : 'Absage';
+    const bodyLines = [
+      'Name: ' + name,
+      'Rückmeldung: ' + attendingText
+    ];
+    if(attending === 'yes'){ bodyLines.push('Anzahl Personen: ' + guests); }
+    bodyLines.push('Anmerkungen: ' + (note || '-'));
+
+    const mailtoUrl = 'mailto:' + RSVP_EMAIL
+      + '?subject=' + encodeURIComponent(RSVP_SUBJECT)
+      + '&body=' + encodeURIComponent(bodyLines.join('\n'));
+    window.location.href = mailtoUrl;
   });
 
   soundToggle.addEventListener('click', ()=>{
