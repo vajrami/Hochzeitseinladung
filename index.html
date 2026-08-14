@@ -679,11 +679,6 @@
           <input type="number" id="rsvp-guests" name="guests" min="1" max="10" value="1" inputmode="numeric">
         </div>
 
-        <div class="rsvp-field">
-          <label id="t-rsvp-note-label" for="rsvp-note"></label>
-          <textarea id="rsvp-note" name="note" rows="3"></textarea>
-        </div>
-
         <button type="submit" class="rsvp-submit" id="t-rsvp-submit"></button>
         <p class="rsvp-status" id="rsvp-status"></p>
       </form>
@@ -782,7 +777,6 @@
       rsvpYes: 'Ich komme gerne',
       rsvpNo: 'Ich kann leider nicht',
       rsvpGuestsLabel: 'Anzahl Personen',
-      rsvpNoteLabel: 'Anmerkungen (z. B. Allergien, Unverträglichkeiten)',
       rsvpSubmit: 'Absenden',
       rsvpSuccessMsg: 'Danke für eure Rückmeldung! Wir freuen uns.',
       rsvpErrorMsg: 'Das hat leider nicht geklappt. Bitte versucht es gleich noch einmal.'
@@ -833,7 +827,6 @@
       rsvpYes: 'Po, do të vij',
       rsvpNo: 'Fatkeqësisht jo',
       rsvpGuestsLabel: 'Numri i personave',
-      rsvpNoteLabel: 'Shënime (p.sh. alergji)',
       rsvpSubmit: 'Dërgo',
       rsvpSuccessMsg: 'Faleminderit për konfirmimin! Do të gëzohemi t’ju shohim.',
       rsvpErrorMsg: 'Diçka shkoi keq. Ju lutemi provoni përsëri.'
@@ -870,7 +863,7 @@
       footer: 'منتظر دیدار شما هستیم!',
       footerNames: 'ولمیر و نازنین',
       songTitle: 'درخواست آهنگ',
-      songLead: 'کدام آهنگ نباید در پیست رقص جا بماند؟ خوشحال می‌شویم اگر پیشنهاد خود را با ما در میان بگذارید!',
+      songLead: 'کدام آهنگ حتماً باید پخش شوه؟ پیشنهادت را با ما شریک کن!',
       songTitleLabel: 'نام آهنگ',
       songArtistLabel: 'خواننده',
       songSubmit: 'ارسال درخواست',
@@ -884,7 +877,6 @@
       rsvpYes: 'بله، حضور خواهم داشت',
       rsvpNo: 'متأسفانه خیر',
       rsvpGuestsLabel: 'تعداد نفرات',
-      rsvpNoteLabel: 'توضیحات (مثلاً حساسیت‌های غذایی)',
       rsvpSubmit: 'ارسال',
       rsvpSuccessMsg: 'متشکریم از اعلام حضورتان! منتظر دیدارتان هستیم.',
       rsvpErrorMsg: 'متأسفانه ارسال انجام نشد. لطفاً دوباره تلاش کنید.'
@@ -993,7 +985,6 @@
     document.getElementById('t-rsvp-yes').textContent = t.rsvpYes;
     document.getElementById('t-rsvp-no').textContent = t.rsvpNo;
     document.getElementById('t-rsvp-guests-label').textContent = t.rsvpGuestsLabel;
-    document.getElementById('t-rsvp-note-label').textContent = t.rsvpNoteLabel;
     document.getElementById('t-rsvp-submit').textContent = t.rsvpSubmit;
 
     document.getElementById('jump-invite').setAttribute('aria-label', t.eyebrow);
@@ -1218,8 +1209,7 @@
       firstName: document.getElementById('rsvp-firstname').value.trim(),
       lastName: document.getElementById('rsvp-lastname').value.trim(),
       attending: rsvpForm.querySelector('input[name="attending"]:checked').value,
-      guests: document.getElementById('rsvp-guests').value,
-      note: document.getElementById('rsvp-note').value.trim()
+      guests: document.getElementById('rsvp-guests').value
     };
     submitToSheet(payload, rsvpStatus, rsvpSubmitBtn, t.rsvpSuccessMsg, t.rsvpErrorMsg);
   });
